@@ -15,7 +15,7 @@ paths:
   /create-account-user:
     parameters: []
     post:
-      summary: ''
+      summary: Create Account User
       operationId: create-account-user
       responses:
         '200':
