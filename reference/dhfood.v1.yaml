@@ -15,7 +15,7 @@ paths:
   /create-account-user:
     parameters: []
     post:
-      summary: Create Account User
+      summary: Create Account of User
       operationId: create-account-user
       responses:
         '200':
@@ -26,6 +26,7 @@ paths:
       parameters:
         - schema:
             type: string
+            example: '987654321'
           in: query
           required: true
           name: ' phoneNumber'
@@ -33,6 +34,7 @@ paths:
             Phone number associated with wallet(required)
         - schema:
             type: string
+            example: hfucj5jatq8h
           in: query
           name: ' secretKey'
           required: true
@@ -48,13 +50,280 @@ paths:
               properties:
                 phoneNumber:
                   type: string
-                  example: '678922105'
+                  example: '987654321'
                 secretKey:
                   type: string
                   example: hfucj5jatq8h
               required:
                 - phoneNumber
                 - secretKey
+            examples:
+              example-1:
+                value:
+                  phoneNumber: '987654321'
+                  secretKey: hfucj5jatq8h
+        description: Request Sample
+  '{phoneNumber}/add-credit-user':
+    post:
+      summary: Add Credit Card details for User
+      operationId: post-add-credit-user
+      responses:
+        '200':
+          description: OK
+      description: Add credit card details
+      security:
+        - app_id: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cardNumber:
+                  type: string
+                  description: Credit card number
+                  example: 1234 5678 9876 5432
+                nameOnCard:
+                  type: string
+                  description: Name on card
+                  example: Utkarsha Saraf
+                expiryDate:
+                  type: string
+                  description: Expiry date on card
+                  example: 2021-11
+                cvv:
+                  example: '123'
+                  type: string
+                currency:
+                  type: string
+                  description: currency of wallet
+                  example: EUR
+                bankName:
+                  type: string
+                  description: Name of the issuing bank
+                  example: World Bank
+              required:
+                - cardNumber
+                - nameOnCard
+                - expiryDate
+                - cvv
+                - currency
+                - bankName
+            examples:
+              example-1:
+                value:
+                  cardNumber: 1234 5678 9876 5432
+                  nameOnCard: Utkarsha Saraf
+                  expiryDate: '2021-01-11'
+                  cvv: '123'
+                  currency: EUR
+                  bankName: World Bank
+        description: Request Sample
+      parameters:
+        - schema:
+            type: string
+            example: 1234 5678 9876 5432
+          in: query
+          name: cardNumber
+          description: Credit card number
+          required: true
+        - schema:
+            type: string
+            example: Utkarsha Saraf
+          in: query
+          name: nameOnCard
+          description: Name on card
+          required: true
+        - schema:
+            type: string
+            example: 2021-11
+          in: query
+          name: expiryDate
+          description: Expiry date on card
+          required: true
+        - schema:
+            type: number
+            example: 123
+          in: query
+          name: cvv
+          description: CVV on card
+          required: true
+        - schema:
+            type: string
+            example: EUR
+          in: query
+          name: currency
+          required: true
+          description: Currency of the wallet
+        - schema:
+            type: string
+            example: World Bank
+          in: query
+          name: bankName
+          description: Name of the issuing bank
+      tags:
+        - wallet
+    parameters:
+      - schema:
+          type: string
+        name: phoneNumber
+        in: path
+        required: true
+  '{phoneNumber}/top-up-wallet-user':
+    post:
+      summary: Top-Up wallet of User
+      operationId: post-top-up-wallet-user
+      responses:
+        '200':
+          description: OK
+      description: Top-up wallet of the user
+      security:
+        - app_id: []
+      parameters:
+        - schema:
+            type: string
+            example: '2716707355'
+          in: query
+          name: transactionId
+          description: Unique id for  transaction
+          required: true
+        - schema:
+            type: string
+            example: '500'
+          in: query
+          name: amount
+          description: Amount to br added to the wallet
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: phoneNumber
+          description: Phone number associated with wallet
+          required: true
+        - schema:
+            type: string
+            example: hfucj5jatq8h
+          in: query
+          name: secretKey
+          required: true
+          description: Developer secret key
+      tags:
+        - wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactionId:
+                  type: string
+                  example: '2716707355'
+                amount:
+                  type: string
+                  example: '500'
+                phoneNumber:
+                  type: string
+                  example: '987654321'
+                secretKey:
+                  type: string
+                  example: hfucj5jatq8h
+              required:
+                - transactionId
+                - amount
+                - phoneNumber
+                - secretKey
+            examples:
+              example-1:
+                value:
+                  transactionId: '2716707355'
+                  amount: '500'
+                  phoneNumber: '987654321'
+                  secretKey: hfucj5jatq8h
+        description: Request Sample
+    parameters: []
+  '(phoneNumber}/place-order-user':
+    post:
+      summary: Place order by user
+      operationId: post-place-order-user
+      responses:
+        '200':
+          description: OK
+      description: 'Place order '
+      tags:
+        - wallet
+      security:
+        - app_id: []
+      parameters:
+        - schema:
+            type: string
+            example: '987654321'
+          in: query
+          name: phoneNumber
+          description: Phone number of user
+          required: true
+        - schema:
+            type: string
+            example: '12345'
+          in: query
+          name: orderId
+          required: true
+          description: Unique id of the order placed
+        - schema:
+            type: string
+            example: hfucj5jatq8h
+          in: query
+          name: secretKey
+          required: true
+          description: Developer secret key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phoneNumber:
+                  type: string
+                  example: '987654321'
+                orderId:
+                  type: string
+                  example: '12345'
+                secretKey:
+                  type: string
+                  example: hfucj5jatq8h
+              required:
+                - phoneNumber
+                - orderId
+                - secretKey
+            examples:
+              example-1:
+                value:
+                  phoneNumber: '987654321'
+                  orderId: '12345'
+                  secretKey: hfucj5jatq8h
+        description: Request Sample
+    parameters: []
+  '{phoneNumber}/{orderId}/pay-for-order-user':
+    post:
+      summary: Pay for order using wallet
+      operationId: post-pay-for-order-user
+      responses:
+        '200':
+          description: OK
+      description: Pay for order using wallet
+      security:
+        - app_id: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+        description: Request Sample
+      parameters:
+        - schema:
+            type: string
+          in: query
+    parameters: []
 components:
   schemas: {}
   securitySchemes:
