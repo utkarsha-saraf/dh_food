@@ -13,32 +13,31 @@ servers:
     description: test
 paths:
   /create-account-user:
-    get:
-      summary: Create Account User
-      tags:
-        - wallet endpoints
-      responses: {}
+    parameters: []
+    post:
+      summary: ''
       operationId: create-account-user
-      description: Create User account
+      responses:
+        '200':
+          description: OK
+      description: Create user account
       security:
         - app_id: []
       parameters:
         - schema:
             type: string
           in: query
+          required: true
           name: ' phoneNumber'
           description: |
             Phone number associated with wallet(required)
-          required: true
         - schema:
             type: string
           in: query
-          name: secretKey
-          description: |
-
-            Developer secret key(required)
+          name: ' secretKey'
           required: true
-    parameters: []
+          description: |
+            Developer secret key(required)
 components:
   schemas: {}
   securitySchemes:
