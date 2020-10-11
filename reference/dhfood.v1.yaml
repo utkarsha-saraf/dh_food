@@ -19,29 +19,7 @@ paths:
       operationId: create-account-user
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  phoneNumber:
-                    type: string
-                    description: Add the phone number associated with the wallet
-                    example: '68743221'
-                  secretKey:
-                    type: string
-                    example: hfucj5jatq8h
-                    description: |
-                      Developer secret key
-                required:
-                  - phoneNumber
-                  - secretKey
-              examples:
-                'Sample ':
-                  value:
-                    phoneNumber: '68743221'
-                    secretKey: hfucj5jatq8h
+          description: Account Created
       description: Create user account
       security:
         - app_id: []
@@ -62,6 +40,21 @@ paths:
             Developer secret key(required)
       tags:
         - wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phoneNumber:
+                  type: string
+                  example: '678922105'
+                secretKey:
+                  type: string
+                  example: hfucj5jatq8h
+              required:
+                - phoneNumber
+                - secretKey
 components:
   schemas: {}
   securitySchemes:
