@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: dhfood
+  version: '1.0'
+  contact:
+    name: FinTech Product Team
+    url: 'https://dhfintechproduct.com'
+    email: fintechproduct@gmail.com
+  termsOfService: 'https://dhfintechproduct.com/terms'
+  description: Create account for user on dh platform
+servers:
+  - url: 'https://api.deliveryhero.com/fooddelivery/wallet'
+    description: test
+paths: {}
+components:
+  schemas: {}
+  securitySchemes:
+    app_id:
+      name: appid
+      type: apiKey
+      in: query
