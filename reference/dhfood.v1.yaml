@@ -241,7 +241,7 @@ paths:
                   secretKey: hfucj5jatq8h
         description: Request Sample
     parameters: []
-  '(phoneNumber}/place-order-user':
+  '{phoneNumber}/place-order-user':
     post:
       summary: Place order by user
       operationId: post-place-order-user
@@ -301,7 +301,12 @@ paths:
                   orderId: '12345'
                   secretKey: hfucj5jatq8h
         description: Request Sample
-    parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: phoneNumber
+        in: path
+        required: true
   '{phoneNumber}/{orderId}/pay-for-order-user':
     post:
       summary: Pay for order using wallet
@@ -317,12 +322,63 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                phoneNumber:
+                  type: string
+                  example: '987654321'
+                orderId:
+                  type: string
+                  example: '12345'
+                amount:
+                  type: string
+                  example: '100'
+                secretKey:
+                  type: string
+                  example: hfucj5jatq8h
+              required:
+                - phoneNumber
+                - orderId
+                - amount
+                - secretKey
+            examples:
+              example-1:
+                value:
+                  phoneNumber: '987654321'
+                  orderId: '12345'
+                  amount: '100'
+                  secretKey: hfucj5jatq8h
         description: Request Sample
       parameters:
         - schema:
             type: string
+            example: '987654321'
           in: query
+          name: phoneNumber
+          description: Phone number associated with wallet
+          required: true
+        - schema:
+            type: string
+            example: '12345'
+          in: query
+          name: orderId
+          description: Unique id for the order placed
+          required: true
+        - schema:
+            type: string
+            example: '100'
+          in: query
+          name: amount
+          required: true
+          description: Amount to be paid for the order
+        - schema:
+            type: string
+            example: hfucj5jatq8h
+          in: query
+          name: secretKey
+          required: true
+          description: Developer secret key
+      tags:
+        - wallet
     parameters: []
 components:
   schemas: {}
