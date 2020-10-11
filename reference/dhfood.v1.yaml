@@ -38,6 +38,8 @@ paths:
           required: true
           description: |
             Developer secret key(required)
+      tags:
+        - wallet
 components:
   schemas: {}
   securitySchemes:
@@ -47,3 +49,4 @@ components:
       in: query
 tags:
   - name: wallet endpoints
+  - name: wallet
