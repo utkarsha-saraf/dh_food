@@ -63,7 +63,7 @@ paths:
                   phoneNumber: '987654321'
                   secretKey: hfucj5jatq8h
         description: Request Sample
-  '{phoneNumber}/add-credit-user':
+  '/{phoneNumber}/add-credit-user':
     post:
       summary: Add Credit Card details for User
       operationId: post-add-credit-user
@@ -171,7 +171,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with wallet
-  '{phoneNumber}/top-up-wallet-user':
+  '/{phoneNumber}/top-up-wallet-user':
     post:
       summary: Top-Up wallet of User
       operationId: post-top-up-wallet-user
@@ -263,7 +263,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with wallet
-  '{phoneNumber}/place-order-user':
+  '/{phoneNumber}/place-order-user':
     post:
       summary: Place order by user
       operationId: post-place-order-user
@@ -331,7 +331,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with the wallet
-  '{phoneNumber}/pay-for-order-user/{orderId}':
+  '{phoneNumber}/{orderId}/pay-for-order-user':
     post:
       summary: Pay for order using wallet
       operationId: post-pay-for-order-user
