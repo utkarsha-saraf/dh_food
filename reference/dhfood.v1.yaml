@@ -276,7 +276,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with wallet
-  '{phoneNumber}/place-order-user':
+  '/{phoneNumber}/place-order-user':
     post:
       summary: Place order by user
       operationId: post-place-order-user
