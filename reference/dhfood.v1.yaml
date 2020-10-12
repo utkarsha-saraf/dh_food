@@ -94,30 +94,30 @@ paths:
                 cvv:
                   example: '123'
                   type: string
-                currency:
-                  type: string
-                  description: currency of wallet
-                  example: EUR
                 bankName:
                   type: string
                   description: Name of the issuing bank
                   example: World Bank
+                phoneNumber:
+                  type: string
+                  example: '987654321'
+                  description: Phone number associated with the wallet
               required:
                 - cardNumber
                 - nameOnCard
                 - expiryDate
                 - cvv
-                - currency
                 - bankName
+                - phoneNumber
             examples:
               example-1:
                 value:
                   cardNumber: 1234 5678 9876 5432
                   nameOnCard: Utkarsha Saraf
-                  expiryDate: '2021-01-11'
+                  expiryDate: 2021-11
                   cvv: '123'
-                  currency: EUR
                   bankName: World Bank
+                  phoneNumber: '987654321'
         description: Request Sample
       parameters:
         - schema:
@@ -150,17 +150,17 @@ paths:
           required: true
         - schema:
             type: string
-            example: EUR
-          in: query
-          name: currency
-          required: true
-          description: Currency of the wallet
-        - schema:
-            type: string
             example: World Bank
           in: query
           name: bankName
           description: Name of the issuing bank
+        - schema:
+            type: string
+            example: '987654321'
+          in: query
+          name: phoneNumber
+          required: true
+          description: Phone number associated with the wallet
       tags:
         - wallet
     parameters:
@@ -209,6 +209,13 @@ paths:
           name: secretKey
           required: true
           description: Developer secret key
+        - schema:
+            type: string
+            example: EUR
+          in: query
+          name: currency
+          required: true
+          description: Currency of the wallet
       tags:
         - wallet
       requestBody:
@@ -229,11 +236,16 @@ paths:
                 secretKey:
                   type: string
                   example: hfucj5jatq8h
+                currency:
+                  type: string
+                  example: EUR
+                  description: currency of the wallet
               required:
                 - transactionId
                 - amount
                 - phoneNumber
                 - secretKey
+                - currency
             examples:
               example-1:
                 value:
@@ -241,6 +253,7 @@ paths:
                   amount: '500'
                   phoneNumber: '987654321'
                   secretKey: hfucj5jatq8h
+                  currency: EUR
         description: Request Sample
     parameters:
       - schema:
