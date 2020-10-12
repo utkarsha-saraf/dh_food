@@ -102,6 +102,10 @@ paths:
                   type: string
                   example: '987654321'
                   description: Phone number associated with the wallet
+                secretKey:
+                  type: string
+                  example: hfucj5jatq8h
+                  description: Devloper secret key
               required:
                 - cardNumber
                 - nameOnCard
@@ -109,6 +113,7 @@ paths:
                 - cvv
                 - bankName
                 - phoneNumber
+                - secretKey
             examples:
               example-1:
                 value:
@@ -118,6 +123,7 @@ paths:
                   cvv: '123'
                   bankName: World Bank
                   phoneNumber: '987654321'
+                  secretKey: hfucj5jatq8h
         description: Request Sample
       parameters:
         - schema:
@@ -161,6 +167,13 @@ paths:
           name: phoneNumber
           required: true
           description: Phone number associated with the wallet
+        - schema:
+            type: string
+            example: hfucj5jatq8h
+          in: query
+          name: secretKey
+          required: true
+          description: Devloper secret key
       tags:
         - wallet
     parameters:
@@ -263,7 +276,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with wallet
-  '/{phoneNumber}/place-order-user':
+  '{phoneNumber}/place-order-user':
     post:
       summary: Place order by user
       operationId: post-place-order-user
@@ -331,7 +344,7 @@ paths:
         in: path
         required: true
         description: Phone number associated with the wallet
-  '{phoneNumber}/{orderId}/pay-for-order-user':
+  '/{phoneNumber}/{orderId}/pay-for-order-user':
     post:
       summary: Pay for order using wallet
       operationId: post-pay-for-order-user
