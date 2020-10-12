@@ -166,9 +166,11 @@ paths:
     parameters:
       - schema:
           type: string
+          example: '987654321'
         name: phoneNumber
         in: path
         required: true
+        description: Phone number associated with wallet
   '{phoneNumber}/top-up-wallet-user':
     post:
       summary: Top-Up wallet of User
@@ -240,7 +242,14 @@ paths:
                   phoneNumber: '987654321'
                   secretKey: hfucj5jatq8h
         description: Request Sample
-    parameters: []
+    parameters:
+      - schema:
+          type: string
+          example: '987654321'
+        name: phoneNumber
+        in: path
+        required: true
+        description: Phone number associated with wallet
   '{phoneNumber}/place-order-user':
     post:
       summary: Place order by user
@@ -304,10 +313,12 @@ paths:
     parameters:
       - schema:
           type: string
+          example: '987654321'
         name: phoneNumber
         in: path
         required: true
-  '{phoneNumber}/{orderId}/pay-for-order-user':
+        description: Phone number associated with the wallet
+  '{phoneNumber}/pay-for-order-user/{orderId}':
     post:
       summary: Pay for order using wallet
       operationId: post-pay-for-order-user
@@ -379,7 +390,21 @@ paths:
           description: Developer secret key
       tags:
         - wallet
-    parameters: []
+    parameters:
+      - schema:
+          type: string
+          example: '987654321'
+        name: phoneNumber
+        in: path
+        required: true
+        description: Phone number associated with the wallet
+      - schema:
+          type: string
+          example: '12345'
+        name: orderId
+        in: path
+        required: true
+        description: Unique id for the order
 components:
   schemas: {}
   securitySchemes:
